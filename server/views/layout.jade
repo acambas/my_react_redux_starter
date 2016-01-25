@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title Content checker
+    link(rel='stylesheet', href='assets/styles.css')
+    
+  body
+    block content
+    script(type='text/javascript').
+        var decodeEntities = (function() {
+        var element = document.createElement('div');
+        function decodeHTMLEntities (str) {
+            if(str && typeof str === 'string') {
+            // strip script/html tags
+            str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+            str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+            element.innerHTML = str;
+            str = element.textContent;
+            element.textContent = '';
+            }
+            return str;
+        }
+        return decodeHTMLEntities;
+        })();
+        window.initialState = JSON.parse(decodeEntities('#{initialState}')); 
+    script(src='assets/bundle.js')
+
+
+
+
+
