@@ -8,7 +8,7 @@ export const fetchData = () => {
         axios.get('/api/test').then((response) => {
             dispatch({
                 type : FETCH_DATA,
-                data : response.data
+                data : response.data.value
             });
         });
     }

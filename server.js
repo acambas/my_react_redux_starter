@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const compress = require('compression');
+
 require('dotenv').load();
 
  var app = express();
@@ -30,13 +32,14 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
 
 
 //------------------set up middleware------------------------------------
+app.use(compress()); 
 app.use('/', express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //------------------set up api routes------------------------------------
 
-app.get('api/test', (req, res) => {
+app.get('/api/test', (req, res) => {
     res.json({value:Date.now()});
 });
 

@@ -22,10 +22,7 @@ module.exports = {
 		//new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.js", Infinity),
 		new ExtractTextPlugin('styles.css'),
 		new webpack.DefinePlugin({
-			'process.env': {
-				// This has effect on the react lib size
-				'NODE_ENV': JSON.stringify('production'),
-			}
+			'process.env.NODE_ENV': JSON.stringify('production')
 		}),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {

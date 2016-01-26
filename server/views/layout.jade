@@ -28,7 +28,9 @@ html(lang='en')
         }
         return decodeHTMLEntities;
         })();
-        window.initialState = JSON.parse(decodeEntities('#{initialState}')); 
+        if('#{initialState}'){
+            window.__initialState__ = JSON.parse(decodeEntities('#{initialState}')); 
+        }
     script(src='assets/bundle.js')
 
 

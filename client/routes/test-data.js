@@ -9,7 +9,7 @@ const componentDidMount = (props, nextProps) => {
 
 const render = ({data}) => {
     return <div>
-       this is test data page and data is {data}
+       this is test data page and data is {data ? new Date(data).toString() : "no data"}
     </div>
 };
 
