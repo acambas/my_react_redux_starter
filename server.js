@@ -47,12 +47,26 @@ app.get('/api/test', (req, res) => {
 
 //------------------set up page routes------------------------------------
 
+app.get('/test', (req,res,next) => {
+    const initialState = {
+        initialState : JSON.stringify({
+            app:{
+                test: new Date(1900,1,1)
+            }
+        })
+    }
+    res.render('index', initialState);
+});
 
 app.get('*',  (req, res) => {
-    // const initialState = {
-    //     initialState : JSON.stringify({test:'test'})
-    // }
-    res.render('index');
+    const initialState = {
+        initialState : JSON.stringify({
+            app:{
+                home: 'idemooooooo'
+            }
+        })
+    }
+    res.render('index', initialState);
 });
 
 

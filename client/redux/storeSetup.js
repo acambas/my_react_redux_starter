@@ -42,7 +42,7 @@ export default function initStoreAndHistory() {
 		)(createStore);
 	}
 
-	const store = finalCreateStore(reducer)
+	const store = finalCreateStore(reducer, window.__initialState__);
 	const history = syncHistoryWithStore(browserHistory, store);
 	return {
 		store,
