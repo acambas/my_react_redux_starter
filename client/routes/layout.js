@@ -8,7 +8,6 @@ const devToolsRender = () => {
 	}
 }
 
-
 export default (props) => {
     return <div>
     	{devToolsRender()}

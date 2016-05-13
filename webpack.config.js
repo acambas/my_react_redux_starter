@@ -28,10 +28,6 @@ module.exports = {
 	module: {
 		loaders: [
             {
-                test:  /\/bootstrap\/js/,
-                loader: 'imports?jQuery=jquery,$=jquery,this=>window'
-            },
-            {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				include: path.join(__dirname, 'client'),
