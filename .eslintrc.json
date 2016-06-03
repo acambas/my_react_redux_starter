@@ -1,7 +1,6 @@
 {
   "parser": "babel-eslint", // I want to use babel-eslint for parsing!
   "rules": {
-    "console": 2,
     "comma-dangle": 0, // dangling commas are ok
     "jsx-quotes": [
       2,
