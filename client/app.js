@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 
 import routes from './routes/routes';
 import mainStore from './redux/storeSetup.js';
-const storeAndHistory = mainStore();
+const storeAndHistory = mainStore()
 
 render(
     <Provider store={storeAndHistory.store}>

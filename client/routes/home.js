@@ -1,11 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class component extends React.Component {
     render() {
-        return <div>
+        return (<div>
             {this.props.message}
-        </div>
+        </div>);
     }
 }
 

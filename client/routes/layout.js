@@ -3,16 +3,18 @@ import DevTools from '../containers/DevTools.js';
 
 
 const devToolsRender = () => {
-	if(process.env.NODE_ENV !== 'production'){
-		return <DevTools />
-	}
+    if (process.env.NODE_ENV !== 'production') {
+        return <DevTools />
+    }
 }
 
 export default (props) => {
-    return <div>
-    	{devToolsRender()}
-        <div className='container'>
-            {props.children}
+    return (
+        <div>
+            {devToolsRender() }
+            <div className='container'>
+                {props.children}
+            </div>
         </div>
-    </div>
+    )
 }

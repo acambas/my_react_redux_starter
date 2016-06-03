@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const compress = require('compression');
-
+const winston = require('winston');
 //require('dotenv').load();
 
 const app = express();
@@ -19,13 +19,13 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     const compiler = webpack(webpackConfig);
 
     // Step 2: Attach the dev middleware to the compiler & the server
-    app.use(require("webpack-dev-middleware")(compiler, {
+    app.use(require('webpack-dev-middleware')(compiler, {
         noInfo: false, publicPath: webpackConfig.output.publicPath
     }));
 
     // Step 3: Attach the hot middleware to the compiler & the server
-    app.use(require("webpack-hot-middleware")(compiler, {
-        log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+    app.use(require('webpack-hot-middleware')(compiler, {
+        log: winston.info, path: '/__webpack_hmr', heartbeat: 10 * 1000
     }));
 }
 
@@ -47,7 +47,7 @@ app.get('/api/test', (req, res) => {
 
 //------------------set up page routes------------------------------------
 
-app.get('/test', (req,res,next) => {
+app.get('/test', (req,res) => {
     const initialState = {
         initialState : JSON.stringify({
             app:{
@@ -78,7 +78,7 @@ app.use((req, res, next) => {
     next(err);
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     res.status(err.status || 500);
     res.json({
         message: err.message,
@@ -92,7 +92,7 @@ app.use((err, req, res, next) => {
 if (require.main === module) {
     const server = http.createServer(app);
     server.listen(process.env.PORT || 1616, function () {
-        console.log("Listening on %j", server.address());
+        winston.info(`Listening on ${server.address()}`);
     });
 }
 
